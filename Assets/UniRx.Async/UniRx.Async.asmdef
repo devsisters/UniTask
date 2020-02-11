@@ -1,8 +1,6 @@
 {
     "name": "UniRx.Async",
-    "references": [
-        "Unity.Entities"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

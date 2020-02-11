@@ -1,11 +1,11 @@
 ﻿#if CSHARP_7_OR_LATER || (UNITY_2018_3_OR_NEWER && (NET_STANDARD_2_0 || NET_4_6))
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 using System;
 using System.Linq;
 using UnityEngine;
 using UniRx.Async.Internal;
 using System.Threading;
-using Unity.Entities;
 
 #if UNITY_2019_3_OR_NEWER
 using UnityEngine.LowLevel;
@@ -116,20 +116,10 @@ namespace UniRx.Async
 #if UNITY_2019_3_OR_NEWER
                 PlayerLoop.GetCurrentPlayerLoop();
 #else
-                ScriptBehaviourUpdateOrder.CurrentPlayerLoop;
+                PlayerLoop.GetDefaultPlayerLoop();
 #endif
 
             Initialize(ref playerLoop);
-        }
-
-        // XXX(daewon): ECS에서 새로운 World를 생성할 때 수동으로 PlayerLoop를 초기화되어야해서 추가함.
-        // [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        public static void ForceInitialize(PlayerLoopSystem playerLoopSystem)
-        {
-            // capture default(unity) sync-context.
-            unitySynchronizationContetext = SynchronizationContext.Current;
-            mainThreadId = Thread.CurrentThread.ManagedThreadId;
-            Initialize(ref playerLoopSystem);
         }
 
         public static void Initialize(ref PlayerLoopSystem playerLoop)
