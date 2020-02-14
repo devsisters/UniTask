@@ -122,6 +122,14 @@ namespace UniRx.Async
             Initialize(ref playerLoop);
         }
 
+        public static void Clear()
+        {
+            unitySynchronizationContetext = null;
+            mainThreadId = default;
+            yielders = null;
+            runners = null;
+        }
+
         public static void Initialize(ref PlayerLoopSystem playerLoop)
         {
             yielders = new ContinuationQueue[7];
