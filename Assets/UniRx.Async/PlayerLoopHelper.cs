@@ -104,7 +104,7 @@ namespace UniRx.Async
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        static void Init()
+        public static void Init()
         {
             // capture default(unity) sync-context.
             unitySynchronizationContetext = SynchronizationContext.Current;
